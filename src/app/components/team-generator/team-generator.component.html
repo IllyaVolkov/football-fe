@@ -1,0 +1,26 @@
+<ng-container>
+  <form [formGroup]="universeForm" (submit)="onSubmit()">
+    <select formControlName="universeName">
+      <option value="">------</option>
+      <option *ngFor="let universe of universes">{{universe.universe}}</option>
+    </select>
+    <button type="submit" [disabled]="universeForm.invalid">Generate Team</button>
+    <div *ngIf="errorMessage" class="error">
+      {{ errorMessage }}
+    </div>
+  </form>
+
+  <div *ngIf="team">
+    <h1>{{team.name}}</h1>
+    <h2>UUID: {{team.id}}</h2>
+    <h2>Universe: {{team.source}}</h2>
+    <h2>Total power: {{team.power}}</h2>
+    <div *ngFor="let player of team.players">
+      <h3>{{player.name}}</h3>
+      <p>Role: {{player.role}}</p>
+      <p>Power: {{player.power}}</p>
+      <p>Weight: {{player.weight}} kg</p>
+      <p>Height: {{player.height}} cm</p>
+    </div>
+  </div>
+</ng-container>

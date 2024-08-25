@@ -1,0 +1,23 @@
+<ng-container>
+  <form [formGroup]="matchForm" (ngSubmit)="generateMatch()">
+    <input type="text" formControlName="homeTeam" placeholder="Home Team ID">
+    <input type="text" formControlName="visitorTeam" placeholder="Visitor Team ID">
+    <button type="submit" [disabled]="matchForm.invalid">Generate Match</button>
+    <div *ngIf="errorMessage" class="error">
+      {{ errorMessage }}
+    </div>
+  </form>
+  <div *ngIf="match">
+    <h2>Match Details</h2>
+    <p>Home Team: {{ match.home_team }}</p>
+    <p>Visitor Team: {{ match.visitor_team }}</p>
+    <p>Winner: {{ match.winner }}</p>
+
+    <h3>Highlights</h3>
+    <ul>
+      <li *ngFor="let highlight of match.highlights">
+        {{ highlight }}
+      </li>
+    </ul>
+  </div>
+</ng-container>
